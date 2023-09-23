@@ -4,14 +4,14 @@ import styled from 'styled-components';
 export const StyledLink = styled(Link)`
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: ${({ theme }) => theme.spasing(1)};
   padding: 8px 0;
-  color: black;
+  color: ${({ theme }) => theme.colors.black};
   text-decoration: none;
   font-weight: 500;
   text-transform: uppercase;
 
   :hover {
-    color: orangered;
+    color: ${({ theme }) => theme.colors.orange};
   }
 `;

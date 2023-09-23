@@ -39,7 +39,7 @@ const MovieDetailsPage = () => {
       }
     }
     getMovie();
-  }, [movieId]);
+  }, [movieId, navigate]);
 
   return (
     <main>

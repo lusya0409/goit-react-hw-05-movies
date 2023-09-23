@@ -31,7 +31,7 @@ const Reviews = () => {
       }
     }
     getReviews();
-  }, [movieId]);
+  }, [movieId, navigate]);
 
   return (
     <main>

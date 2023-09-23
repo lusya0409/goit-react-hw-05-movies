@@ -1,6 +1,6 @@
 import { fetchMoviesSearchQuery } from 'components/api';
 import { useState, useEffect } from 'react';
-import toast from 'react-hot-toast';
+//import toast from 'react-hot-toast';
 import { useSearchParams } from 'react-router-dom';
 import { Searchbar } from 'components/Searchbar/Searchbar';
 import { MoviesList } from 'components/MoviesList/MoviesList';

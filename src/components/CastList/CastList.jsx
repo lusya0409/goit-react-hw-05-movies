@@ -3,7 +3,6 @@ import { List, Item } from './CastList.styled';
 export const CastList = ({ cast }) => {
   const defaultImg = '/goit-react-hw-05-movies/profile.jpg';
 
-  console.log(cast);
   return (
     <List>
       {cast.map(actor => (
