@@ -1,23 +1,39 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = 'https://64f1f5c60e1e60602d247ee1.mockapi.io/';
+const API_KEY = '539a811151219621cc49aaf90f09b51e';
+axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
 
-export const fetchQuizzes = async () => {
-  const resp = await axios.get('/quizzes');
+export const fetchTrendingMovies = async day => {
+  const resp = await axios.get(
+    `/trending/movie/${day}?language=en-US&api_key=${API_KEY}`
+  );
   return resp.data;
 };
 
-export const fetchQuizById = async quizId => {
-  const resp = await axios.get(`/quizzes/${quizId}`);
+export const fetchMoviesSearchQuery = async searchQuery => {
+  const resp = await axios.get(
+    `/search/movie?query=${searchQuery}&include_adult=false&language=en-US&page=1&api_key=${API_KEY}`
+  );
   return resp.data;
 };
 
-export const deleteQuizById = async quizId => {
-  const resp = await axios.delete(`/quizzes/${quizId}`);
+export const fetchMovieById = async movieId => {
+  const resp = await axios.get(
+    `/movie/${movieId}?language=en-US&api_key=${API_KEY}`
+  );
   return resp.data;
 };
 
-export const createQuiz = async quiz => {
-  const resp = await axios.post('/quizzes', quiz);
+export const fetchCastWithMovie = async movieId => {
+  const resp = await axios.get(
+    `/movie/${movieId}/credits?language=en-US&api_key=${API_KEY}`
+  );
+  return resp.data;
+};
+
+export const fetchReviewsAboutMovie = async movieId => {
+  const resp = await axios.get(
+    `/movie/${movieId}/reviews?language=en-US&page=1&api_key=${API_KEY}`
+  );
   return resp.data;
 };
