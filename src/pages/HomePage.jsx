@@ -28,7 +28,7 @@ export default function HomePage() {
     <main>
       <h1>Trending today</h1>
       {movies.length > 0 && <MoviesList movies={movies} />}
-      {loading && <Loader>LOADING...</Loader>}
+      {loading && <Loader />}
       {error && !loading && <div>OOPS! THERE WAS AN ERROR!</div>}
     </main>
   );

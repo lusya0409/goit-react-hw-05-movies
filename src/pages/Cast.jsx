@@ -37,13 +37,13 @@ const Cast = () => {
   return (
     <main>
       {cast.length > 0 ? (
-        <CastList cast={cast}></CastList>
+        <CastList cast={cast} />
       ) : (
         <p>We don't have any cast for this movie.</p>
       )}
-      {loading && <Loader>LOADING...</Loader>}
+      {loading && <Loader />}
       {error && !loading && <div>OOPS! THERE WAS AN ERROR!</div>}
-      <Suspense fallback={<div>Loading subpage...</div>}>
+      <Suspense fallback={<Loader />}>
         <Outlet />
       </Suspense>
     </main>

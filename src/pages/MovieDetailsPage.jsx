@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom';
 import { fetchMovieById } from 'components/api';
 import { BackLink } from 'components/BackLink/BackLink';
-import { useState, useEffect, Suspense } from 'react';
+import { useState, useEffect, Suspense, useRef } from 'react';
 import { MovieCard } from 'components/MovieCard/MovieCard';
 import { Loader } from 'components/Loader/Loader';
 
@@ -17,7 +17,7 @@ const MovieDetailsPage = () => {
   const [movie, setMovie] = useState(null);
   const { movieId } = useParams();
   const location = useLocation();
-  const backLinkHref = location.state?.from ?? '/';
+  const backLinkHref = useRef(location.state?.from ?? '/');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -44,7 +44,11 @@ const MovieDetailsPage = () => {
 
   return (
     <main>
-      <BackLink to={backLinkHref}>Go back</BackLink>
+      <BackLink to={backLinkHref.current}>
+        {backLinkHref.current.pathname === '/movies'
+          ? 'Go back to movies'
+          : 'Go back to home'}
+      </BackLink>
       {movie && <MovieCard movie={movie} />}
       <div>
         <h3>Additional information</h3>
@@ -57,10 +61,10 @@ const MovieDetailsPage = () => {
           </li>
         </ul>
       </div>
-      {loading && <Loader>LOADING...</Loader>}
+      {loading && <Loader />}
       {error && !loading && <div>OOPS! THERE WAS AN ERROR!</div>}
 
-      <Suspense fallback={<Loader>Loading subpage...</Loader>}>
+      <Suspense fallback={<Loader />}>
         <Outlet />
       </Suspense>
     </main>

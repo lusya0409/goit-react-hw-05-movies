@@ -41,10 +41,10 @@ export default function MoviesPage() {
   return (
     <main>
       <h2>Movies</h2>
-      <Searchbar query={query} onSubmit={handleSubmit}></Searchbar>
+      <Searchbar query={query} onSubmit={handleSubmit} />
       {movies.length > 0 && <MoviesList movies={movies} />}
 
-      {loading && <Loader>LOADING...</Loader>}
+      {loading && <Loader />}
       {error && !loading && <div>OOPS! THERE WAS AN ERROR!</div>}
     </main>
   );

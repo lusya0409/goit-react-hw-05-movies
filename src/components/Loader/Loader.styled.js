@@ -18,11 +18,3 @@ export const Spinner = styled(InfinitySpin)`
   color: #1780e2;
   width: 200px;
 `;
-// export const ModalWrap = styled.div`
-//   max-width: calc(100vw - 48px);
-//   max-height: calc(100vh - 24px);
-//   background-color: ${({ theme }) => theme.colors.white};
-//   img {
-//     max-height: calc(100vh - 24px);
-//   }
-// `;
