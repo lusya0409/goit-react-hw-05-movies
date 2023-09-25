@@ -2,6 +2,7 @@ import { useParams, useNavigate, Outlet } from 'react-router-dom';
 import { fetchCastWithMovie } from 'components/api';
 import { useState, useEffect, Suspense } from 'react';
 import { CastList } from 'components/CastList/CastList';
+import { Loader } from 'components/Loader/Loader';
 
 const Cast = () => {
   const [loading, setLoading] = useState(false);
@@ -40,7 +41,7 @@ const Cast = () => {
       ) : (
         <p>We don't have any cast for this movie.</p>
       )}
-      {loading && <div>LOADING...</div>}
+      {loading && <Loader>LOADING...</Loader>}
       {error && !loading && <div>OOPS! THERE WAS AN ERROR!</div>}
       <Suspense fallback={<div>Loading subpage...</div>}>
         <Outlet />

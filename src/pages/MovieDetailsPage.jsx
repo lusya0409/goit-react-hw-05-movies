@@ -9,6 +9,7 @@ import { fetchMovieById } from 'components/api';
 import { BackLink } from 'components/BackLink/BackLink';
 import { useState, useEffect, Suspense } from 'react';
 import { MovieCard } from 'components/MovieCard/MovieCard';
+import { Loader } from 'components/Loader/Loader';
 
 const MovieDetailsPage = () => {
   const [loading, setLoading] = useState(false);
@@ -20,7 +21,7 @@ const MovieDetailsPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!movieId) return;
+    if (!movieId || (movie && movieId && Number(movieId) === movie.id)) return;
     async function getMovie() {
       try {
         setLoading(true);
@@ -39,7 +40,7 @@ const MovieDetailsPage = () => {
       }
     }
     getMovie();
-  }, [movieId, navigate]);
+  }, [movieId, movie, navigate]);
 
   return (
     <main>
@@ -49,21 +50,17 @@ const MovieDetailsPage = () => {
         <h3>Additional information</h3>
         <ul>
           <li>
-            <Link to="cast" state={{ from: location }}>
-              Cast
-            </Link>
+            <Link to="cast">Cast</Link>
           </li>
           <li>
-            <Link to="reviews" state={{ from: location }}>
-              Reviews
-            </Link>
+            <Link to="reviews">Reviews</Link>
           </li>
         </ul>
       </div>
-      {loading && <div>LOADING...</div>}
+      {loading && <Loader>LOADING...</Loader>}
       {error && !loading && <div>OOPS! THERE WAS AN ERROR!</div>}
 
-      <Suspense fallback={<div>Loading subpage...</div>}>
+      <Suspense fallback={<Loader>Loading subpage...</Loader>}>
         <Outlet />
       </Suspense>
     </main>

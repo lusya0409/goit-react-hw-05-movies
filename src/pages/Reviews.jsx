@@ -2,6 +2,7 @@ import { useParams, useNavigate, Outlet } from 'react-router-dom';
 import { fetchReviewsAboutMovie } from 'components/api';
 import { useState, useEffect, Suspense } from 'react';
 import { ReviewsList } from 'components/ReviewsList/ReviewsList';
+import { Loader } from 'components/Loader/Loader';
 
 const Reviews = () => {
   const [loading, setLoading] = useState(false);
@@ -40,7 +41,7 @@ const Reviews = () => {
       ) : (
         <p>We don't have any reviews for this movie.</p>
       )}
-      {loading && <div>LOADING...</div>}
+      {loading && <Loader>LOADING...</Loader>}
       {error && !loading && <div>OOPS! THERE WAS AN ERROR!</div>}
       <Suspense fallback={<div>Loading subpage...</div>}>
         <Outlet />

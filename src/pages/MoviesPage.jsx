@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Searchbar } from 'components/Searchbar/Searchbar';
 import { MoviesList } from 'components/MoviesList/MoviesList';
+import { Loader } from 'components/Loader/Loader';
 
 export default function MoviesPage() {
   const [loading, setLoading] = useState(false);
@@ -43,7 +44,7 @@ export default function MoviesPage() {
       <Searchbar query={query} onSubmit={handleSubmit}></Searchbar>
       {movies.length > 0 && <MoviesList movies={movies} />}
 
-      {loading && <div>LOADING...</div>}
+      {loading && <Loader>LOADING...</Loader>}
       {error && !loading && <div>OOPS! THERE WAS AN ERROR!</div>}
     </main>
   );
